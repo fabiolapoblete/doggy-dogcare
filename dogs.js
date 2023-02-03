@@ -40,7 +40,7 @@ function renderDogsUI(dog) {
   <img src=${dog.img}>
   <ul>
     <li>${dog.name}${gender}</li>
-    <li>${dog.age} years</li>
+    <li>Age: ${dog.age} years</li>
     <li>Breed: ${dog.breed}</li>
     <li>Owner: ${dog.owner.name}</li>
   </ul>
@@ -56,6 +56,16 @@ function renderDogsUI(dog) {
     dogsContainer.appendChild(dog.HTML);
   });
 }
+
+searchInput.addEventListener("input", (event) => {
+  event.preventDefault(); //För att inte genomföra default acions som sker vid knapptryck på submitknapp i form
+  dogsContainer.replaceChildren();
+  dogs.forEach((dog) => {
+    if (dog.name.toLowerCase() === searchInput.value.toLowerCase()) {
+      dogsContainer.appendChild(dog.HTML);
+    }
+  });
+});
 
 searchButton.addEventListener("click", (event) => {
   event.preventDefault(); //För att inte genomföra default acions som sker vid knapptryck på submitknapp i form
